@@ -49,7 +49,7 @@ namespace impl
 		template <typename... Fs>
 		void operator()(Fs&&... fs)
 		{
-			overload_t<Fs...>(std::move<Fs>(fs)...)(std::forward<T>(t_));
+			overload_t<Fs...>(std::forward<Fs>(fs)...)(std::forward<T>(t_));
 		}
 	};
 }
@@ -57,7 +57,7 @@ namespace impl
 template <typename... Fs>
 typename impl::overload_t<Fs...>::type overload(Fs&&... fs)
 {
-	return impl::overload_t<Fs...>(std::move(fs)...);
+	return impl::overload_t<Fs...>(std::forward<Fs>(fs)...);
 }
 
 template <typename T>
@@ -66,10 +66,10 @@ impl::matcher_t<T> match(T&& t)
 	return impl::matcher_t<T>(std::forward<T>(t));
 }
 
-template <typename L>
-impl::otherwise_t<L> otherwise(L&& l)
+template <typename F>
+impl::otherwise_t<F> otherwise(F&& f)
 {
-	return impl::otherwise_t<L>(std::move(l));
+	return impl::otherwise_t<F>(std::forward<F>(f));
 }
 
 #endif
