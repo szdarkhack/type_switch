@@ -1,7 +1,7 @@
 type_switch
 ===========
 
-A simple static type-switch / pattern matching library.
+A simple C++11 static type-switch / pattern matching library.
 
 ####API:
 - **overload( < list of single-argument lambdas > ):**
